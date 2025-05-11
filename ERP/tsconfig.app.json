@@ -1,0 +1,17 @@
+{
+  // ... other configurations
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts"
+    // "src/polyfills.ts" // if you have it
+  ],
+  "include": [
+    "src/**/*.d.ts" // Ensure .d.ts files are included if you have custom type declarations
+    // "src/**/*.ts" // This is often implicitly covered by files, but sometimes explicitly added
+  ]
+  // ... exclude, etc.
+}

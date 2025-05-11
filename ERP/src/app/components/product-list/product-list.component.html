@@ -1,0 +1,48 @@
+<div class="product-list-container">
+  <header class="product-list-header">
+    <h1>Product Management</h1>
+    <button (click)="openAddProductPopup()" class="btn btn-add">Add New Product</button>
+  </header>
+
+  <div *ngIf="products.length === 0; else productTable" class="no-products">
+    No products available. Add some!
+  </div>
+
+  <ng-template #productTable>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>
+            <img [src]="product.imageUrl || 'https://via.placeholder.com/50?text=No+Image'"
+                 alt="{{ product.name }}"
+                 class="product-image">
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>
+            <button (click)="openEditProductPopup(product)" class="btn btn-edit">Edit</button>
+            <button (click)="deleteProduct(product.id)" class="btn btn-delete">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>
+
+<!-- Product Form Popup -->
+<app-product-form
+  [isVisible]="isPopupVisible"
+  [product]="selectedProduct"
+  (save)="handleSaveProduct($event)"
+  (close)="closeProductPopup()">
+</app-product-form>

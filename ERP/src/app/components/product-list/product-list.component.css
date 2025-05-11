@@ -1,0 +1,154 @@
+.product-list-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-list-header h1 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.no-products {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #555;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-right: 5px;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn-add {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .product-list-header h1 {
+    margin-bottom: 10px;
+  }
+  .btn-add {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align:left;
+  }
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+  td:nth-of-type(1):before { content: "Image"; }
+  td:nth-of-type(2):before { content: "Name"; }
+  td:nth-of-type(3):before { content: "Description"; }
+  td:nth-of-type(4):before { content: "Price"; }
+  td:nth-of-type(5):before { content: "Actions"; }
+
+  .product-image {
+    width: 40px;
+    height: 40px;
+  }
+  .btn {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="popup-overlay" *ngIf="isVisible">
+  <div class="popup-content">
+    <h2>{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h2>
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="currentProduct.name" required #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="currentProduct.description" required #description="ngModel"></textarea>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error-message">
+          Description is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" [(ngModel)]="currentProduct.price" required min="0" #price="ngModel">
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error-message">
+          <span *ngIf="price.errors?.['required']">Price is required.</span>
+          <span *ngIf="price.errors?.['min']">Price must be positive.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">Image URL (Optional):</label>
+        <input type="url" id="imageUrl" name="imageUrl" [(ngModel)]="currentProduct.imageUrl">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="productForm.invalid" class="btn btn-save">
+          {{ isEditMode ? 'Save Changes' : 'Add Product' }}
+        </button>
+        <button type="button" (click)="onClose()" class="btn btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
