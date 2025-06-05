@@ -45,6 +45,7 @@ export type InvoiceItem = {
   quantity: number;
   rate: number;
   amount: number;
+  hsn?: string;
 };
 
 export const insertClientSchema = createInsertSchema(clients).omit({
@@ -62,6 +63,7 @@ export const insertInvoiceSchema = createInsertSchema(invoices).omit({
     quantity: z.number().min(1, "Quantity must be at least 1"),
     rate: z.number().min(0, "Rate must be positive"),
     amount: z.number().min(0, "Amount must be positive"),
+    hsn: z.string().optional(),
   })).min(1, "At least one item is required"),
 });
 

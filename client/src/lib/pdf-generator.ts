@@ -63,6 +63,7 @@ export async function generateInvoicePDF(invoice: Invoice, client: Client) {
   doc.setFontSize(10);
   doc.setFont("helvetica", "bold");
   doc.text("Description", 25, yPos);
+  doc.text("HSN", 100, yPos);
   doc.text("Qty", 120, yPos);
   doc.text("Rate", 140, yPos);
   doc.text("Amount", 165, yPos);
@@ -73,6 +74,7 @@ export async function generateInvoicePDF(invoice: Invoice, client: Client) {
   doc.setFont("helvetica", "normal");
   invoice.items.forEach((item: any) => {
     doc.text(item.description, 25, yPos);
+    doc.text(item.hsn || "-", 100, yPos);
     doc.text(item.quantity.toString(), 120, yPos);
     doc.text(`$${item.rate.toFixed(2)}`, 140, yPos);
     doc.text(`$${item.amount.toFixed(2)}`, 165, yPos);

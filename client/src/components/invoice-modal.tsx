@@ -46,7 +46,7 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
       tax: "0",
       total: "0",
       notes: "",
-      items: [{ description: "", quantity: 1, rate: 0, amount: 0 }],
+      items: [{ description: "", quantity: 1, rate: 0, amount: 0, hsn: "" }],
     },
   });
 
@@ -275,7 +275,7 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
                   type="button"
                   variant="outline"
                   size="sm"
-                  onClick={() => append({ description: "", quantity: 1, rate: 0, amount: 0 })}
+                  onClick={() => append({ description: "", quantity: 1, rate: 0, amount: 0, hsn: "" })}
                 >
                   <Plus className="mr-2 h-4 w-4" />
                   Add Item
@@ -289,9 +289,10 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
                       <thead className="bg-muted">
                         <tr>
                           <th className="px-4 py-3 text-left text-sm font-medium">Description</th>
-                          <th className="px-4 py-3 text-left text-sm font-medium w-24">Qty</th>
-                          <th className="px-4 py-3 text-left text-sm font-medium w-32">Rate</th>
-                          <th className="px-4 py-3 text-left text-sm font-medium w-32">Amount</th>
+                          <th className="px-4 py-3 text-left text-sm font-medium w-24">HSN</th>
+                          <th className="px-4 py-3 text-left text-sm font-medium w-20">Qty</th>
+                          <th className="px-4 py-3 text-left text-sm font-medium w-28">Rate</th>
+                          <th className="px-4 py-3 text-left text-sm font-medium w-28">Amount</th>
                           <th className="px-4 py-3 text-left text-sm font-medium w-16">Action</th>
                         </tr>
                       </thead>
@@ -306,6 +307,20 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
                                   <FormItem>
                                     <FormControl>
                                       <Input placeholder="Service description" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </td>
+                            <td className="px-4 py-3">
+                              <FormField
+                                control={form.control}
+                                name={`items.${index}.hsn`}
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormControl>
+                                      <Input placeholder="HSN Code" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
