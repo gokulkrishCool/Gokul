@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 11% 98%; /* #F5F7FA */
+  --foreground: 220 13% 18%; /* #263238 */
+  --muted: 210 11% 96%; /* #ECEFF1 */
+  --muted-foreground: 220 9% 46%; /* #546E7A */
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 13% 18%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 13% 18%;
+  --border: 220 13% 91%; /* #CFD8DC */
+  --input: 220 13% 91%;
+  --primary: 207 90% 54%; /* #1565C0 */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 11% 96%;
+  --secondary-foreground: 220 13% 18%;
+  --accent: 186 100% 42%; /* #00BCD4 */
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 207 90% 54%;
+  --radius: 0.5rem;
+  --chart-1: 207 90% 54%;
+  --chart-2: 186 100% 42%;
+  --chart-3: 43 96% 56%;
+  --chart-4: 27 96% 61%;
+  --chart-5: 12 76% 61%;
+}
+
+.dark {
+  --background: 220 13% 18%;
+  --foreground: 210 11% 98%;
+  --muted: 220 13% 23%;
+  --muted-foreground: 220 9% 60%;
+  --popover: 220 13% 18%;
+  --popover-foreground: 210 11% 98%;
+  --card: 220 13% 18%;
+  --card-foreground: 210 11% 98%;
+  --border: 220 13% 23%;
+  --input: 220 13% 23%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 220 13% 23%;
+  --secondary-foreground: 210 11% 98%;
+  --accent: 186 100% 42%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 207 90% 54%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .sidebar-nav-item {
+    @apply flex items-center space-x-3 px-4 py-3 text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors;
+  }
+  
+  .sidebar-nav-item.active {
+    @apply text-primary bg-primary/10 font-medium;
+  }
+  
+  .stat-card {
+    @apply bg-card rounded-xl shadow-sm p-6 border border-border;
+  }
+  
+  .invoice-status {
+    @apply inline-flex px-2 py-1 text-xs font-semibold rounded-full;
+  }
+  
+  .invoice-status.paid {
+    @apply bg-green-100 text-green-800 dark:bg-green-800/20 dark:text-green-400;
+  }
+  
+  .invoice-status.pending {
+    @apply bg-orange-100 text-orange-800 dark:bg-orange-800/20 dark:text-orange-400;
+  }
+  
+  .invoice-status.sent {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-800/20 dark:text-blue-400;
+  }
+  
+  .invoice-status.draft {
+    @apply bg-gray-100 text-gray-800 dark:bg-gray-800/20 dark:text-gray-400;
+  }
+  
+  .invoice-status.overdue {
+    @apply bg-red-100 text-red-800 dark:bg-red-800/20 dark:text-red-400;
+  }
+  
+  .priority-indicator {
+    @apply w-2 h-2 rounded-full flex-shrink-0;
+  }
+  
+  .priority-indicator.low {
+    @apply bg-green-500;
+  }
+  
+  .priority-indicator.medium {
+    @apply bg-yellow-500;
+  }
+  
+  .priority-indicator.high {
+    @apply bg-orange-500;
+  }
+  
+  .priority-indicator.urgent {
+    @apply bg-red-500;
+  }
+}
