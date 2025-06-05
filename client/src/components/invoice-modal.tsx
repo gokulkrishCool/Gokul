@@ -35,6 +35,8 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
     queryKey: ["/api/clients"],
   });
 
+  const clientsList = clients || [];
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -203,7 +205,7 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {clients?.map((client: any) => (
+                        {clientsList.map((client: any) => (
                           <SelectItem key={client.id} value={client.id.toString()}>
                             {client.name}
                           </SelectItem>
@@ -410,7 +412,11 @@ export default function InvoiceModal({ open, onOpenChange, invoice }: InvoiceMod
                       <Textarea
                         placeholder="Additional notes or terms..."
                         className="resize-none"
-                        {...field}
+                        value={field.value || ""}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
                       />
                     </FormControl>
                     <FormMessage />

@@ -135,7 +135,8 @@ export class MemStorage implements IStorage {
       ...insertInvoice, 
       id, 
       invoiceNumber,
-      createdAt: new Date() 
+      createdAt: new Date(),
+      notes: insertInvoice.notes || null
     };
     this.invoices.set(id, invoice);
     return invoice;
@@ -168,7 +169,9 @@ export class MemStorage implements IStorage {
     const enquiry: Enquiry = { 
       ...insertEnquiry, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      phone: insertEnquiry.phone || null,
+      company: insertEnquiry.company || null
     };
     this.enquiries.set(id, enquiry);
     return enquiry;
