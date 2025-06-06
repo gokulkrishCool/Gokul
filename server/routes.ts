@@ -3,10 +3,19 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertClientSchema, insertInvoiceSchema, insertEnquirySchema } from "@shared/schema";
 import { z } from "zod";
+import { authenticateToken, login, register, getProfile, type AuthRequest } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Authentication routes (public)
+  app.post("/api/auth/login", login);
+  app.post("/api/auth/register", register);
+  app.get("/api/auth/profile", authenticateToken, getProfile);
+
+  // Protected routes - all require authentication
+  app.use("/api", authenticateToken);
+
   // Client routes
-  app.get("/api/clients", async (req, res) => {
+  app.get("/api/clients", async (req: AuthRequest, res) => {
     try {
       const clients = await storage.getClients();
       res.json(clients);
